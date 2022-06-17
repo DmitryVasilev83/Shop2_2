@@ -1,0 +1,7 @@
+com\geekbrains\products\repositories\ProductRepository.class
+com\geekbrains\products\ProductServiceApplication.class
+com\geekbrains\products\services\ProductService.class
+com\geekbrains\products\controllers\ProductControllerImpl.class
+com\geekbrains\products\controllers\ProductController.class
+com\geekbrains\products\services\ImageSaverService.class
+com\geekbrains\products\controllers\ProductControllerTest.class
