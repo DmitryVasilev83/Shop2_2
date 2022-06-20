@@ -38,10 +38,14 @@ public class ProductControllerImpl implements ProductController {
 	}
 	
 	@Override
-	public RestPageImpl getProductsWithPagingAndFiltering(int page, int pageSize, String word, Double min, Double max) {
+	public RestPageImpl getProductsWithPagingAndFiltering(int page, int pageSize, String word, String word2, Double min, Double max) {
 		Specification<Product> spec = Specification.where(null);
 		if (word != null) {
 			spec = spec.and(ProductSpecs.titleContains(word));
+		}
+//		DZ 9 и в параметрах метода
+		if (word2 != null) {
+			spec = spec.and(ProductSpecs.categoryContains(word2));
 		}
 		if (min != null) {
 			spec = spec.and(ProductSpecs.priceGreaterThanOrEq(min));

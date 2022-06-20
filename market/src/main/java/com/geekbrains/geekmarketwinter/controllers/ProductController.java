@@ -64,7 +64,7 @@ public class ProductController {
         model.addAttribute("newProduct", new ProductDTO());
         model.addAttribute("categories", categoryService.getAllCategories());
         logger.info("Successfully added product: " + newProductTitle);
-        return "add-product-form";
+        return "redirect:/shop";
     }
 
 }
