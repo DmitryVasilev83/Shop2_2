@@ -50,6 +50,7 @@ public class ShopController {
     public String shopPage(Model model,
                            @RequestParam(value = "page") Optional<Integer> page,
                            @RequestParam(value = "word", required = false) String word,
+                           @RequestParam(value = "word2", required = false) String word2,
                            @RequestParam(value = "min", required = false) Double min,
                            @RequestParam(value = "max", required = false) Double max
     ) {
@@ -61,6 +62,11 @@ public class ShopController {
             spec = spec.and(ProductSpecs.titleContains(word));
             filters.append("&word=" + word);
         }
+        // dz 9
+        if (word2 != null) {
+            spec = spec.and(ProductSpecs.categoryContains(word2));
+            filters.append("&word2=" + word2);
+        }
         if (min != null) {
             spec = spec.and(ProductSpecs.priceGreaterThanOrEq(min));
             filters.append("&min=" + min);
@@ -70,7 +76,7 @@ public class ShopController {
             filters.append("&max=" + max);
         }
 
-        Page<Product> products = productService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, word, min, max);
+        Page<Product> products = productService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, word, word2, min, max);
 
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", currentPage);
@@ -81,7 +87,9 @@ public class ShopController {
         model.addAttribute("min", min);
         model.addAttribute("max", max);
         model.addAttribute("word", word);
-        
+//        DZ 9
+        model.addAttribute("word2", word2);
+
         return "shop-page";
     }
 

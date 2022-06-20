@@ -26,6 +26,7 @@ public interface ProductService {
 		@RequestParam(value = "page") int page,
 		@RequestParam(value = "pageSize") int pageSize,
 		@RequestParam(value = "word") String word,
+		@RequestParam(value = "word2") String word2,
 		@RequestParam(value = "min") Double min,
 		@RequestParam(value = "max") Double max);
 

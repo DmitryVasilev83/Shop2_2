@@ -3,6 +3,7 @@ package com.geekbrains.geekmarketwinter.services;
 import com.geekbrains.geekmarketwinter.entities.Role;
 import com.geekbrains.geekmarketwinter.entities.SystemUser;
 import com.geekbrains.geekmarketwinter.entities.User;
+import contract.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +17,7 @@ import com.geekbrains.geekmarketwinter.repositories.UserRepository;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,6 +45,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User findByUserName(String username) {
         return userRepository.findOneByUserName(username);
+    }
+
+    @Override
+    @Transactional
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override

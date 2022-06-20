@@ -21,6 +21,7 @@ public interface ProductController {
 		@RequestParam(value = "page") int page,
 		@RequestParam(value = "pageSize") int pageSize,
 		@RequestParam(value = "word", required = false) String word,
+		@RequestParam(value = "word2", required = false) String word2,           // dz 9
 		@RequestParam(value = "min", required = false) Double min,
 		@RequestParam(value = "max", required = false) Double max);
 
