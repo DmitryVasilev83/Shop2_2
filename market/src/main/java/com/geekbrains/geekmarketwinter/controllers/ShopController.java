@@ -3,7 +3,7 @@ package com.geekbrains.geekmarketwinter.controllers;
 import com.geekbrains.geekmarketwinter.entities.DeliveryAddress;
 import com.geekbrains.geekmarketwinter.entities.Order;
 import com.geekbrains.geekmarketwinter.entities.OrderItem;
-import com.geekbrains.geekmarketwinter.entities.User;
+import contract.entities.User;
 import com.geekbrains.geekmarketwinter.services.*;
 import com.geekbrains.geekmarketwinter.utils.ShoppingCart;
 import contract.entities.Product;

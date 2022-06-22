@@ -1,7 +1,7 @@
 package com.geekbrains.geekmarketwinter.controllers;
 
 import com.ctc.wstx.shaded.msv.org_jp_gr_xml.xml.UXML;
-import com.geekbrains.geekmarketwinter.entities.User;
+import contract.entities.User;
 import com.geekbrains.geekmarketwinter.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
