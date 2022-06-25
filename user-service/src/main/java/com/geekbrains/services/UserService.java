@@ -4,6 +4,7 @@ import com.geekbrains.repositories.UserRepositoryUS;
 import contract.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -15,12 +16,16 @@ public class UserService {
 
 
     public User findByUserName(String userName) {
-        System.out.println("Test find user 3");
+
         return userRepositoryUS.findOneByUserName(userName);
     }
 
     public List<User> findAll() {
-
         return userRepositoryUS.findAll();
+    }
+
+    public void saveUser(@RequestBody User user) {
+
+        userRepositoryUS.save(user);
     }
 }

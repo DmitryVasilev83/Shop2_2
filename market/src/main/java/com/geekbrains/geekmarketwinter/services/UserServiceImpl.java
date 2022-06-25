@@ -90,12 +90,16 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(systemUser.getPassword()));
         user.setFirstName(systemUser.getFirstName());
         user.setLastName(systemUser.getLastName());
+        user.setPhone(systemUser.getPhone());
         user.setEmail(systemUser.getEmail());
 
         user.setRoles(Arrays.asList(roleRepository.findOneByName("ROLE_EMPLOYEE")));
+// dz 9_4
+        userFeignService.saveUser(user);
 
-        System.out.println("Test find user 1");
-        userRepository.save(user);
+        //    Старый вариант рабочий
+//        userRepository.save(user);
+
         return true;
     }
 

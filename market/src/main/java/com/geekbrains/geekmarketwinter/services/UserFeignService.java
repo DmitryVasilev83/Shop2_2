@@ -1,12 +1,10 @@
 package com.geekbrains.geekmarketwinter.services;
 
 import contract.entities.Product;
+import contract.entities.ProductDTO;
 import contract.entities.User;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,11 +12,13 @@ import java.util.List;
 public interface UserFeignService {
 
 
-//    @GetMapping("/findByUserName/{userName}")
-    @RequestMapping(method = RequestMethod.GET, value ="/findByUserName/{userName}")
+    @GetMapping("/findByUserName/{userName}")
     User findByUserName(@PathVariable("userName") String userName);
 
 
     @GetMapping("/getAllUsers")
     List<User> findAll();
+
+    @RequestMapping("/saveUser")
+    void saveUser(@RequestBody User user);
 }
