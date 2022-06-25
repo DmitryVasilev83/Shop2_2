@@ -52,6 +52,7 @@
             <select class="form-control" th:field="*{deliveryAddress}"  id="dropDeliveryAddresses">
                 <option th:each="o : ${deliveryAddresses}" th:value="${o.id}" th:text="${o.address}"></option>
             </select>
+<!--            <input type="text" th:field="*{deliveryAddress}" class="form-control input-sm">-->
             <br>
             <span>Укажите номер телефона</span>
             <input type="text" th:field="*{phoneNumber}" class="form-control input-sm">

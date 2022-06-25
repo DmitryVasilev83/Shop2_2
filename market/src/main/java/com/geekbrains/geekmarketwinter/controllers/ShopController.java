@@ -3,7 +3,7 @@ package com.geekbrains.geekmarketwinter.controllers;
 import com.geekbrains.geekmarketwinter.entities.DeliveryAddress;
 import com.geekbrains.geekmarketwinter.entities.Order;
 import com.geekbrains.geekmarketwinter.entities.OrderItem;
-import com.geekbrains.geekmarketwinter.entities.User;
+import contract.entities.User;
 import com.geekbrains.geekmarketwinter.services.*;
 import com.geekbrains.geekmarketwinter.utils.ShoppingCart;
 import contract.entities.Product;
@@ -113,6 +113,7 @@ public class ShopController {
         List<DeliveryAddress> deliveryAddresses = deliveryAddressService.getUserAddresses(user.getId());
         model.addAttribute("order", order);
         model.addAttribute("deliveryAddresses", deliveryAddresses);
+        System.out.println("test order 1");
         return "order-filler";
     }
     
@@ -149,11 +150,14 @@ public class ShopController {
         order.setDeliveryPrice(0.0);
         order = orderService.saveOrder(order);
         model.addAttribute("order", order);
+        System.out.println("order_id" + order.getId() );
+        System.out.println("test order 2");
         return "order-filler";
     }
     
     @GetMapping("/order/result/{id}")
     public String orderConfirm(Model model, @PathVariable(name = "id") Long id, Principal principal) {
+        System.out.println("test order 5");
         if (principal == null) {
             return "redirect:/login";
         }

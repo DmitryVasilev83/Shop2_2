@@ -1,9 +1,8 @@
 package com.geekbrains.geekmarketwinter.services;
 
-import com.geekbrains.geekmarketwinter.entities.Role;
+import contract.entities.Role;
 import com.geekbrains.geekmarketwinter.entities.SystemUser;
-import com.geekbrains.geekmarketwinter.entities.User;
-import contract.entities.Product;
+import contract.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,6 +24,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder passwordEncoder;
+    private UserFeignService userFeignService;
+
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -41,17 +42,40 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    @Transactional
-    public User findByUserName(String username) {
-        return userRepository.findOneByUserName(username);
+    @Autowired
+    public void setUserFeignService(UserFeignService userFeignService) {
+        this.userFeignService = userFeignService;
     }
 
+    //     Рабочий вариант без фейн клиента.
+//    @Override
+//    @Transactional
+//    public User findByUserName(String username) {
+//        return userRepository.findOneByUserName(username);
+//    }
+    // DZ 9_4 (работает)
+    @Override
+    @Transactional
+    public User findByUserName(String userName) {
+
+        return userFeignService.findByUserName(userName);
+    }
+
+
+    //     Рабочий вариант без фейн клиента.
+//    @Override
+//    @Transactional
+//    public List<User> getAllUsers() {
+//        return userRepository.findAll();
+//    }
+    // DZ 9_4 (работает)
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+
+        return userFeignService.findAll();
     }
+
 
     @Override
     @Transactional
@@ -66,11 +90,16 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(systemUser.getPassword()));
         user.setFirstName(systemUser.getFirstName());
         user.setLastName(systemUser.getLastName());
+        user.setPhone(systemUser.getPhone());
         user.setEmail(systemUser.getEmail());
 
         user.setRoles(Arrays.asList(roleRepository.findOneByName("ROLE_EMPLOYEE")));
+// dz 9_4
+        userFeignService.saveUser(user);
 
-        userRepository.save(user);
+        //    Старый вариант рабочий
+//        userRepository.save(user);
+
         return true;
     }
 

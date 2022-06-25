@@ -1,7 +1,7 @@
 package com.geekbrains.geekmarketwinter.controllers;
 
 import com.geekbrains.geekmarketwinter.entities.SystemUser;
-import com.geekbrains.geekmarketwinter.entities.User;
+import contract.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
